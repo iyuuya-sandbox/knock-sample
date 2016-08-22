@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: odhttp://coffeescript.org/
 
 $(document).ready ->
-  $('#debug').on 'click', ->
+  $('#auth').on 'click', ->
     $.ajax(
       type: 'POST',
       url: '/user_token',
