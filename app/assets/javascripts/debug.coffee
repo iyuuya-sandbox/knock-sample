@@ -11,7 +11,7 @@ $(document).ready ->
       dataType: 'json'
       success: (data) ->
         token = data.jwt
-        console.log token
+        $('.debug_container').text "token: #{token}"
         $.ajax(
           type: 'GET',
           url: '/debug/api',
@@ -20,6 +20,6 @@ $(document).ready ->
           console.log 'request result'
           console.log data
       error: (data) ->
-        console.log 'error'
-        console.log data
+        message = "#{data.status}: #{data.statusText}"
+        $('.debug_container').text message
     )
