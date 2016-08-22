@@ -5,6 +5,6 @@ class DebugController < ApplicationController
   end
 
   def api
-    render json: { status: "ok" }
+    render json: { "message": "success!" }
   end
 end

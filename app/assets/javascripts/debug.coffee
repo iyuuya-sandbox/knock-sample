@@ -12,13 +12,18 @@ $(document).ready ->
       success: (data) ->
         token = data.jwt
         $('.debug_container').text "token: #{token}"
-        $.ajax(
-          type: 'GET',
-          url: '/debug/api',
-          headers: { 'Authorization': "Bearer #{token}" }
-        ).done (data) ->
-          console.log 'request result'
-          console.log data
+      error: (data) ->
+        message = "#{data.status}: #{data.statusText}"
+        $('.debug_container').text message
+    )
+
+  $('#api').on 'click', ->
+    $.ajax(
+      type: 'GET',
+      url: '/debug/api',
+      headers: { 'Authorization': "Bearer #{$('#api_token').val()}" }
+      success: (data) ->
+        $('.debug_container').text data.message
       error: (data) ->
         message = "#{data.status}: #{data.statusText}"
         $('.debug_container').text message
