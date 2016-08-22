@@ -10,7 +10,15 @@ $(document).ready ->
       data: { auth: { email: $('#auth_email').val(), password: $('#auth_password').val() } },
       dataType: 'json'
       success: (data) ->
-        console.log data
+        token = data.jwt
+        console.log token
+        $.ajax(
+          type: 'GET',
+          url: '/debug/api',
+          headers: { 'Authorization': "Bearer #{token}" }
+        ).done (data) ->
+          console.log 'request result'
+          console.log data
       error: (data) ->
         console.log 'error'
         console.log data
